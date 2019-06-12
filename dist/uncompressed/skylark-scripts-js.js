@@ -1,5 +1,5 @@
 /**
- * skylark-utils-js - The js features enhancement for skylark utils.
+ * skylark-scripts-js - The js features enhancement for skylark utils.
  * @author Hudaokeji Co.,Ltd
  * @version v0.9.0
  * @link www.skylarkjs.org
@@ -37,11 +37,16 @@
                 deps: deps.map(function(dep){
                   return absolute(dep,id);
                 }),
+                resolved: false,
                 exports: null
             };
             require(id);
         } else {
-            map[id] = factory;
+            map[id] = {
+                factory : null,
+                resolved : true,
+                exports : factory
+            };
         }
     };
     require = globals.require = function(id) {
@@ -49,14 +54,15 @@
             throw new Error('Module ' + id + ' has not been defined');
         }
         var module = map[id];
-        if (!module.exports) {
+        if (!module.resolved) {
             var args = [];
 
             module.deps.forEach(function(dep){
                 args.push(require(dep));
             })
 
-            module.exports = module.factory.apply(window, args);
+            module.exports = module.factory.apply(globals, args) || null;
+            module.resolved = true;
         }
         return module.exports;
     };
@@ -72,7 +78,7 @@
     var skylarkjs = require("skylark-langx/skylark");
 
     if (isCmd) {
-      exports = skylarkjs;
+      module.exports = skylarkjs;
     } else {
       globals.skylarkjs  = skylarkjs;
     }
@@ -80,12 +86,11 @@
 
 })(function(define,require) {
 
-define('skylark-utils-js/js',[
-    "skylark-utils/skylark",
-    "skylark-utils/scripter"
-], function(skylark, scripter) {
+define('skylark-scripts-js/js',[
+    "skylark-langx/skylark"
+], function(skylark) {
 	
-	return scripter;
+	return skylark.attach("scripts.js",{});
 });
 /*jshint curly:true, eqeqeq:true, laxbreak:true, noempty:false */
 /*
@@ -173,7 +178,7 @@ define('skylark-utils-js/js',[
 
 */
 
-define('skylark-utils-js/primitives/beautify-js',[],function() {
+define('skylark-scripts-js/primitives/beautify-js',[],function() {
 
     var acorn = {};
     (function (exports) {
@@ -2003,7 +2008,7 @@ define('skylark-utils-js/primitives/beautify-js',[],function() {
     return { js_beautify: js_beautify };
 });
 
-define('skylark-utils-js/beautify',[
+define('skylark-scripts-js/beautify',[
     "./js",
     "./primitives/beautify-js"
 ], function(js, beautifyJs) {
@@ -2011,7 +2016,7 @@ define('skylark-utils-js/beautify',[
 	return js.beautify = beautifyJs.js_beautify;
 });
 /*! 2.5.1 */
-define('skylark-utils-js/primitives/jshint',[],function(){
+define('skylark-scripts-js/primitives/jshint',[],function(){
 
 var JSHINT;
 if (typeof window === 'undefined') window = {};
@@ -62542,14 +62547,14 @@ return JSHINT;
 
 });
 
-define('skylark-utils-js/Lint',[
+define('skylark-scripts-js/Lint',[
     "./js",
     "./primitives/jshint"
 ], function(js, JSLint) {
 
 	return js.Lint = JSLint;
 });
-define('skylark-utils-js/primitives/acorn',[],function(){
+define('skylark-scripts-js/primitives/acorn',[],function(){
 
 
 
@@ -67896,7 +67901,7 @@ function isIdentifierChar(code, astral) {
   return exports;
 });
 
-define('skylark-utils-js/Parser',[
+define('skylark-scripts-js/Parser',[
 	"skylark-langx/langx",
     "./js",
     "./primitives/acorn"
@@ -67905,7 +67910,7 @@ define('skylark-utils-js/Parser',[
 
 	return Parser ;
 });
-define('skylark-utils-js/main',[
+define('skylark-scripts-js/main',[
     "./js",
     "./beautify",
     "./Lint",
@@ -67914,7 +67919,8 @@ define('skylark-utils-js/main',[
     return js;
 });
 
-define('skylark-utils-js', ['skylark-utils-js/main'], function (main) { return main; });
+define('skylark-scripts-js', ['skylark-scripts-js/main'], function (main) { return main; });
 
 
 },this);
+//# sourceMappingURL=sourcemaps/skylark-scripts-js.js.map
