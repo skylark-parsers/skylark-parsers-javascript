@@ -1,5 +1,5 @@
 {
-  "name": "skylark-parsers-javascript",
+  "name": "skylark-scripts-javascript",
   "version": "0.9.0",
   "description": "The js features enhancement for skylark utils.",
   "main": "-",
@@ -10,7 +10,7 @@
   "homepage": "www.skylarkjs.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skylark-parsers/skylark-parsers-javascript.git"
+    "url": "git+https://github.com/skylark-scripts/skylark-scripts-javascript.git"
   },
   "keywords": [
     "skylark",
@@ -24,7 +24,7 @@
   "license": "MIT",
   "bugs": "https://github.com/skylarkjs/skylark/issues",
   "dependencies": {
-    "skylark-langx": "git+https://github.com/skylarklangx/skylark-langx.git#master"
+    "skylark-langx": "git+https://github.com/skylark-langx/skylark-langx.git#master"
   },
   "engines": {
     "node": ">=0.8.0"
