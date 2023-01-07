@@ -1,5 +1,5 @@
 /**
- * skylark-scripts-javascript - The js features enhancement for skylark utils.
+ * skylark-texts-javascript - The js features enhancement for skylark utils.
  * @author Hudaokeji Co.,Ltd
  * @version v0.9.0
  * @link www.skylarkjs.org
@@ -86,7 +86,7 @@
 
 })(function(define,require) {
 
-define('skylark-scripts-javascript/js',[
+define('skylark-texts-javascript/js',[
     "skylark-langx/skylark"
 ], function(skylark) {
 	
@@ -178,7 +178,7 @@ define('skylark-scripts-javascript/js',[
 
 */
 
-define('skylark-scripts-javascript/primitives/beautify-js',[],function() {
+define('skylark-texts-javascript/primitives/beautify-js',[],function() {
 
     var acorn = {};
     (function (exports) {
@@ -2008,7 +2008,7 @@ define('skylark-scripts-javascript/primitives/beautify-js',[],function() {
     return { js_beautify: js_beautify };
 });
 
-define('skylark-scripts-javascript/beautify',[
+define('skylark-texts-javascript/beautify',[
     "./js",
     "./primitives/beautify-js"
 ], function(js, beautifyJs) {
@@ -2016,7 +2016,7 @@ define('skylark-scripts-javascript/beautify',[
 	return js.beautify = beautifyJs.js_beautify;
 });
 /*! 2.5.1 */
-define('skylark-scripts-javascript/primitives/jshint',[],function(){
+define('skylark-texts-javascript/primitives/jshint',[],function(){
 
 var JSHINT;
 if (typeof window === 'undefined') window = {};
@@ -62547,14 +62547,14 @@ return JSHINT;
 
 });
 
-define('skylark-scripts-javascript/Lint',[
+define('skylark-texts-javascript/Lint',[
     "./js",
     "./primitives/jshint"
 ], function(js, JSLint) {
 
 	return js.Lint = JSLint;
 });
-define('skylark-scripts-javascript/primitives/acorn',[],function(){
+define('skylark-texts-javascript/primitives/acorn',[],function(){
 
 
 
@@ -67901,7 +67901,7 @@ function isIdentifierChar(code, astral) {
   return exports;
 });
 
-define('skylark-scripts-javascript/Parser',[
+define('skylark-texts-javascript/Parser',[
 	"skylark-langx/langx",
     "./js",
     "./primitives/acorn"
@@ -67910,7 +67910,7 @@ define('skylark-scripts-javascript/Parser',[
 
 	return Parser ;
 });
-define('skylark-scripts-javascript/main',[
+define('skylark-texts-javascript/main',[
     "./js",
     "./beautify",
     "./Lint",
@@ -67919,8 +67919,8 @@ define('skylark-scripts-javascript/main',[
     return js;
 });
 
-define('skylark-scripts-javascript', ['skylark-scripts-javascript/main'], function (main) { return main; });
+define('skylark-texts-javascript', ['skylark-texts-javascript/main'], function (main) { return main; });
 
 
 },this);
-//# sourceMappingURL=sourcemaps/skylark-scripts-javascript.js.map
+//# sourceMappingURL=sourcemaps/skylark-texts-javascript.js.map
